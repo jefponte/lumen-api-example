@@ -51,7 +51,6 @@ The migrations are created in the folder ./database/migrations and you have to c
 
         ./02-api-with-db/app/Serie.php 
         ./02-api-with-db/app/Episodios.php 
-        ./02-api-with-db/app/User.php 
 
 - Enable the Eloquent in ./02-api-with-db/bootstrap/app.php
 
