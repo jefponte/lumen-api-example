@@ -37,7 +37,8 @@ With php artisan you can create your tables.
         php ./02-api-with-db/artisan make:migration criar_tabela_series --create=series
         php ./02-api-with-db/artisan make:migration criar_tabela_episodios --create=episodios
 
-The migrations are created in the folder ./database/migrations and you have to customize it and the run the command migrate with php artisan.
+The migrations are created in the folder ./database/migrations and you have to customize it and the run the command migrate with php artisan. If you use sqlite you have to create a empty file with this path 02-api-with-db/database/database.sqlite.
+
 
         php ./02-api-with-db/artisan migrate
 
