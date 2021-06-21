@@ -59,7 +59,7 @@ Your API is running in
 
 7. Enable the Eloquent in ./02-api-with-db/bootstrap/app.php
 
-                $app->withEloquent();
+        $app->withEloquent();
 
 8. Run project with PHP:  
 
