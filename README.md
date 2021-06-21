@@ -79,16 +79,16 @@ Your API is running in
 
         ./routes/web.php 
 ```php
-        $router->group(['prefix' => 'api', 'middleware' => 'auth'], function () use ($router) {
-        
-        });
+$router->group(['prefix' => 'api', 'middleware' => 'auth'], function () use ($router) {
+
+});
 ```
 3. Enable the Route Midleware in /bootstrap/app.php
 
 ```php
-        $app->routeMiddleware([
+$app->routeMiddleware([
         'auth' => App\Http\Middleware\Authenticate::class,
-        ]);
+]);
 ```
 
         php ./03-api-authentication/artisan make:migration criar_tabela_usuarios --create=usuarios
