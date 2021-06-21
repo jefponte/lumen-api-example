@@ -28,10 +28,14 @@ Your API is running in
     http://localhost:8000/api/series
 
 ## api with database mapping
-<code>
-composer create-project --prefer-dist laravel/lumen api-with-db
-</code>
 
+With php artisan you can create your tables. 
+
+<code>
+
+composer create-project --prefer-dist laravel/lumen 02-api-with-db
+php artisan make:migration criar_tabela_series --create=series
+</code>
 
 
 ## api with authentication token
