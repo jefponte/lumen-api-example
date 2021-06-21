@@ -39,7 +39,11 @@ With php artisan you can create your tables.
 
 The migrations are created in the folder ./database/migrations and you have to customize it. 
 
-And them change the database config in .env
+- Change the database config in .env
+
+- Create the models like ./app/Serie.php 
+
+- Habilite Eloquent in ./ bootstrap/app.php
 
 
 ## api with authentication token
