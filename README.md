@@ -42,3 +42,10 @@ The migrations are created in the folder ./database/migrations
 
 ## api with authentication token
 
+        composer create-project --prefer-dist laravel/lumen 03-api-authentication
+        php ./03-api-authentication/artisan make:migration criar_tabela_series --create=series
+        php ./03-api-authentication/artisan make:migration criar_tabela_episodios --create=episodios
+
+        
+        php ./03-api-authentication/artisan make:migration criar_tabela_episodios --create=usuarios
+
