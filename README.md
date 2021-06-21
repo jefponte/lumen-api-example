@@ -45,7 +45,10 @@ The migrations are created in the folder ./database/migrations and you have to c
 
 - Change the database ./02-api-with-db/.env
 
--- Create the models like ./02-api-with-db/app/Serie.php 
+- Create the models like 
+
+        ./02-api-with-db/app/Serie.php 
+        ./02-api-with-db/app/Episodios.php 
 
 - Habilite Eloquent in ./02-api-with-db/bootstrap/app.php
 
