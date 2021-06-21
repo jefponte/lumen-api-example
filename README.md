@@ -43,7 +43,9 @@ The migrations are created in the folder ./database/migrations and you have to c
         php ./02-api-with-db/artisan migrate
 
 
-- Change the database ./02-api-with-db/.env
+- Define the database configuration 
+
+        ./02-api-with-db/.env
 
 - Create the models like 
 
