@@ -9,15 +9,22 @@ Here you can learn how to make a API with lumen/laravel.
 composer create-project --prefer-dist laravel/lumen 01-simples-api
 </code>
 
-You can create your router in routes/web.php 
+You can create your router in this file: 
 
-Create your controller class in app/Http/Controllers
+        routes/web.php 
 
-We created SeriesController.php
+Create your controller class like this: 
 
+        app/Http/Controllers/SeriesController.php
+
+Run project with PHP 
 <code>
-php -S localhost:8000 -t ./simples-api/public
+php -S localhost:8000 -t ./01-simples-api/public
 </code>
+
+Your API is running in 
+
+    http://localhost:8000/api/series
 
 ## api with database mapping
 <code>
