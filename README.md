@@ -17,7 +17,9 @@ Create your controller class in app/Http/Controllers
 We created SeriesController.php
 
 <code>
+
 php -S localhost:8000 -t ./simples-api/public
+
 </code>
 
 ## api with database mapping
