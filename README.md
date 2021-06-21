@@ -5,9 +5,9 @@ Here you can learn how to make a API with lumen/laravel.
 ## 01 Simple API
 
 
-<code>
-composer create-project --prefer-dist laravel/lumen 01-simples-api
-</code>
+
+        composer create-project --prefer-dist laravel/lumen 01-simples-api
+
 
 You can create your router in this file: 
 
@@ -19,9 +19,9 @@ Create your controller class like this:
 
 Run project with PHP:  
 
-<code>
-php -S localhost:8000 -t ./01-simples-api/public
-</code>
+
+        php -S localhost:8000 -t ./01-simples-api/public
+
 
 Your API is running in 
 
@@ -36,7 +36,7 @@ With php artisan you can create your tables.
 
         php ./02-api-with-db/artisan make:migration criar_tabela_series --create=series
         php ./02-api-with-db/artisan make:migration criar_tabela_episodios --create=episodios
-        
+
 The migrations are created in the folder ./database/migrations
 
 
