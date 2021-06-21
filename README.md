@@ -27,7 +27,7 @@ Your API is running in
 
     http://localhost:8000/api/series
 
-## api with database mapping
+## 02 Api with database mapping
 
 With php artisan you can create your tables. 
 
