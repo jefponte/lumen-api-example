@@ -51,8 +51,15 @@ The migrations are created in the folder ./database/migrations and you have to c
 
         ./02-api-with-db/app/Serie.php 
         ./02-api-with-db/app/Episodios.php 
+        ./02-api-with-db/app/User.php 
 
 - Enable the Eloquent in ./02-api-with-db/bootstrap/app.php
+
+
+Then run project with PHP:  
+
+
+        php -S localhost:8000 -t ./02-api-with-db/public
 
 
 ## api with authentication token

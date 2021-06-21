@@ -14,8 +14,8 @@ class CriarTabelaSeries extends Migration
     public function up()
     {
         Schema::create('series', function (Blueprint $table) {
-            $table->tyneIncrements('id');
-            $table->string('name')->unique();
+            $table->tinyIncrements('id');
+            $table->string('nome')->unique();
         });
     }
 
