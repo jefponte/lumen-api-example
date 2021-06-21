@@ -6,9 +6,9 @@ Here you can learn how to make a API with lumen/laravel.
 
 01. simples-api
 
-{% filename %}
+<code>
 composer create-project --prefer-dist laravel/lumen simples-api
-{% endfilename %}
+</code>
 
 You can create your router in routes/web.php 
 
