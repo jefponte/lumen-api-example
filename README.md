@@ -78,11 +78,10 @@ Your API is running in
 2. Add the middleware in your routs:  
 
         ./routes/web.php 
-
 ```php
-$router->group(['prefix' => 'api', 'middleware' => 'auth'], function () use ($router) {
-    
-});
+        $router->group(['prefix' => 'api', 'middleware' => 'auth'], function () use ($router) {
+        
+        });
 ```
 
 
