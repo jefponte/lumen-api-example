@@ -29,10 +29,14 @@ Your API is running in
 
 ## 02 Api with database mapping
 
-With php artisan you can create your tables. 
-
+1. Create laravel/lumen project: 
 
         composer create-project --prefer-dist laravel/lumen 02-api-with-db
+
+
+2. With php artisan you can create your tables. 
+
+
 
         php ./02-api-with-db/artisan make:migration criar_tabela_series --create=series
         php ./02-api-with-db/artisan make:migration criar_tabela_episodios --create=episodios
@@ -60,15 +64,11 @@ Then run project with PHP:
 
         php -S localhost:8000 -t ./02-api-with-db/public
 
-
-## api with authentication token
+## 03 Api With Authentication 
 
         composer create-project --prefer-dist laravel/lumen 03-api-authentication
         php ./03-api-authentication/artisan make:migration criar_tabela_series --create=series
         php ./03-api-authentication/artisan make:migration criar_tabela_episodios --create=episodios
 
-
-
-
-        php ./03-api-authentication/artisan make:migration criar_tabela_episodios --create=usuarios
+        php ./03-api-authentication/artisan make:migration criar_tabela_usuarios --create=usuarios
 
