@@ -75,9 +75,7 @@ Your API is running in
 
         composer require ./firebase/php-jwt
 
-2. Add the middleware in your routs:  
-
-        ./routes/web.php 
+2. Add the middleware in your rout file: ./routes/web.php 
 ```php
 $router->group(['prefix' => 'api', 'middleware' => 'auth'], function () use ($router) {
 
