@@ -11,16 +11,16 @@ Here you can learn how to make a API with lumen/laravel.
 
 2. You can create your router in this file: 
 
-        ./01-simples-api/routes/web.php 
+        ./routes/web.php 
 
 3. Create your controller class like this: 
 
-        ./01-simples-api/app/Http/Controllers/SeriesController.php
+        ./app/Http/Controllers/SeriesController.php
 
 3. Run project with PHP:  
 
 
-        php -S localhost:8000 -t ./01-simples-api/public
+        php -S localhost:8000 -t ./public
 
 
 Your API is running in 
@@ -35,41 +35,58 @@ Your API is running in
 
 2. You can create your router in this file: 
 
-        ./01-simples-api/routes/web.php 
+        ./routes/web.php 
 
 
-3.  Define the database configuration. If you use sqlite you have to create a empty file with this path 02-api-with-db/database/database.sqlite.
+3.  Define the database configuration. If you use sqlite you have to create a empty file with this path /database/database.sqlite
 
-        ./02-api-with-db/.env
+        .env
 
 4. With php artisan you can create your tables. 
 
-        php ./02-api-with-db/artisan make:migration criar_tabela_series --create=series
-        php ./02-api-with-db/artisan make:migration criar_tabela_episodios --create=episodios
+        php ./artisan make:migration criar_tabela_series --create=series
+        php ./artisan make:migration criar_tabela_episodios --create=episodios
 
 5. Execute php artisan migrate and the migrations will be created in the folder ./database/migrations.
 
-        php ./02-api-with-db/artisan migrate
+        php ./artisan migrate
 
 
 6. Create the models like 
 
-        ./02-api-with-db/app/Serie.php 
-        ./02-api-with-db/app/Episodios.php 
+        ./app/Serie.php 
+        ./app/Episodios.php 
 
-7. Enable the Eloquent in ./02-api-with-db/bootstrap/app.php
+7. Enable the Eloquent in ./bootstrap/app.php
 
         $app->withEloquent();
 
 8. Run project with PHP:  
 
-        php -S localhost:8000 -t ./02-api-with-db/public
+        php -S localhost:8000 -t ./public
 
 ## 03 Api With Authentication 
 
+1. Create laravel/lumen project: 
+
         composer create-project --prefer-dist laravel/lumen 03-api-authentication
-        php ./03-api-authentication/artisan make:migration criar_tabela_series --create=series
-        php ./03-api-authentication/artisan make:migration criar_tabela_episodios --create=episodios
+
+2. Get the library to use JWT authentication:
+
+        composer require ./firebase/php-jwt
+
+2. Add the middleware in your routs:  
+
+        ./routes/web.php 
+
+```php
+$router->group(['prefix' => 'api', 'middleware' => 'auth'], function () use ($router) {
+    
+});
+```
+
+
 
         php ./03-api-authentication/artisan make:migration criar_tabela_usuarios --create=usuarios
+
 
