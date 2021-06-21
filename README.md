@@ -4,7 +4,7 @@ Here you can learn how to make a API with lumen/laravel.
 
 ## Simple API
 
-01. simples-api
+        File: simples-api
 
 <code>
 composer create-project --prefer-dist laravel/lumen simples-api
@@ -22,7 +22,7 @@ php -S localhost:8000 -t ./simples-api/public
 
 ## api with database mapping
 <code>
-composer create-project --prefer-dist laravel/lumen database-api
+composer create-project --prefer-dist laravel/lumen api-with-db
 </code>
 
 
