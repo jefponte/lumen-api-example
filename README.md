@@ -36,6 +36,7 @@ composer create-project --prefer-dist laravel/lumen 02-api-with-db
 </code>
 <code>
 php artisan make:migration criar_tabela_series --create=series
+php artisan make:migration criar_tabela_episodios --create=episodios
 </code>
 
 
