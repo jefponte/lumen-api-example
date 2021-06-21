@@ -31,15 +31,12 @@ Your API is running in
 
 With php artisan you can create your tables. 
 
-<code>
-composer create-project --prefer-dist laravel/lumen 02-api-with-db
-</code>
 
+        composer create-project --prefer-dist laravel/lumen 02-api-with-db
 
-<code>
-php artisan make:migration criar_tabela_series --create=series
-php artisan make:migration criar_tabela_episodios --create=episodios
-</code>
+        php artisan make:migration criar_tabela_series --create=series
+        php artisan make:migration criar_tabela_episodios --create=episodios
+
 
 
 ## api with authentication token
