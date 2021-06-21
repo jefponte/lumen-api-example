@@ -17,7 +17,8 @@ Create your controller class like this:
 
         app/Http/Controllers/SeriesController.php
 
-Run project with PHP 
+Run project with PHP:  
+
 <code>
 php -S localhost:8000 -t ./01-simples-api/public
 </code>
