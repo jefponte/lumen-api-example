@@ -37,7 +37,9 @@ With php artisan you can create your tables.
         php ./02-api-with-db/artisan make:migration criar_tabela_series --create=series
         php ./02-api-with-db/artisan make:migration criar_tabela_episodios --create=episodios
 
-The migrations are created in the folder ./database/migrations
+The migrations are created in the folder ./database/migrations and you have to customize it. 
+
+And them change the database config in .env
 
 
 ## api with authentication token
@@ -46,6 +48,8 @@ The migrations are created in the folder ./database/migrations
         php ./03-api-authentication/artisan make:migration criar_tabela_series --create=series
         php ./03-api-authentication/artisan make:migration criar_tabela_episodios --create=episodios
 
-        
+
+
+
         php ./03-api-authentication/artisan make:migration criar_tabela_episodios --create=usuarios
 
