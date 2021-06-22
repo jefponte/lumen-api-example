@@ -90,7 +90,6 @@ class CreateTableMovie extends Migration
 6. Create the models like this: 
 
         ./app/Movie.php 
-        ./app/Credits.php 
 
 7. Enable the Eloquent in ./bootstrap/app.php
 
@@ -100,7 +99,10 @@ class CreateTableMovie extends Migration
 
         php -S localhost:8000 -t ./public
 
-## 03 Api With Authentication 
+## 04 Api with relationship
+
+Create relationship is to easy. 
+## 05 Api With Authentication 
 
 9. Use the migration to create your authentication table. 
 
