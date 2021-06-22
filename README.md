@@ -8,11 +8,11 @@ Here you can learn how to make a API with lumen/laravel.
 
         composer create-project --prefer-dist laravel/lumen your-project-name
 
-3. Create your controller classes like this:  
+2. Create your controller classes like this:  
 
         ./app/Http/Controllers/MovieController.php
 
-4. Create the method you will call in the route:
+3. Create the method you will call in the route:
 ```php
 class MovieController extends Controller
 {
