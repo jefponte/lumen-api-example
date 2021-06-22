@@ -48,11 +48,9 @@ $router->group(['prefix' => '/api'], function () use ($router) {
         #DB_USERNAME=homestead
         #DB_PASSWORD=secret
 
-
 5. With php artisan you can create your tables.
 
         php ./artisan make:migration create_table_movie --create=movie
-
 
 6.  The migrations will be created in the folder ./database/migrations. Add the fields in the migration files, like this example: 
 ```php
@@ -87,9 +85,8 @@ class CreateTableMovie extends Migration
 
         php ./artisan migrate
 
-6. Create the models like this: 
+6. Create the models like this: ./app/Movie.php 
 
-        ./app/Movie.php 
 
 7. Enable the Eloquent in ./bootstrap/app.php
 
@@ -150,4 +147,3 @@ $router->group(['prefix' => 'api', 'middleware' => 'auth'], function () use ($ro
 ...
 });
 ```
-
