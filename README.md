@@ -23,7 +23,7 @@ class MovieController extends Controller
      }
 }
 ```
-4. Call the method you created in routes file: 
+3. Call the method you created in routes file: 
 
 
         ./routes/web.php 
@@ -35,14 +35,14 @@ $router->group(['prefix' => '/api'], function () use ($router) {
 });
 ```
 
-Run project with PHP int folder ./public and then you can see it running at this addres http://localhost:8000/api/movie
+Run project with PHP in folder ./public and then you can see it running at this addres http://localhost:8000/api/movie
 
         php -S localhost:8000 -t ./public
 
 
 ## 02 Api with database mapping
 
-5. Enable the Eloquent, in ./bootstrap/app.php uncomment this line  
+4. Enable the Eloquent, in ./bootstrap/app.php uncomment this line  
 ```php
 
         $app->withEloquent();
@@ -83,7 +83,10 @@ class CreateTableMovie extends Migration
 
         php ./artisan migrate
 
-10. Create the models to mapping the fields like this: ./app/Movie.php 
+10. Create the models to mapping the fields like this: 
+
+        ./app/Movie.php 
+
 ```php
 namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
