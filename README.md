@@ -205,6 +205,7 @@ class CriarTabelaCast extends Migration
 ```
 
 
+
 15.  Execute php artisan migrate to create your tables. 
 
 
@@ -296,30 +297,6 @@ abstract class BaseController
 
 namespace App\Http\Controllers;
 
-use App\Cast;
-
-class CastController extends BaseController
-{
-    public function __construct()
-    {
-        $this->classe = Episodio::class;
-    }
-    public function fetchByMovie(int $movieId)
-    {
-        $cast = Cast::query()
-            ->where('movie_id', $movieId)
-            ->paginate();
-
-        return $cast;
-    }
-}
-```
-
-
-```php
-
-namespace App\Http\Controllers;
-
 use App\Movie;
 
 class MovieController extends BaseController
@@ -331,6 +308,33 @@ class MovieController extends BaseController
 }
 
 ```
+
+
+```php
+
+namespace App\Http\Controllers;
+
+use App\Cast;
+use PhpParser\Node\Expr\Cast as ExprCast;
+
+class CastController extends BaseController
+{
+    public function __construct()
+    {
+        $this->classe = Episodio::class;
+    }
+    public function fetchByMovie(int $movieId)
+    {
+        $cast = ExprCast::query()
+            ->where('movie_id', $movieId)
+            ->paginate();
+
+        return $cast;
+    }
+}
+```
+
+
 
 
 Run project with PHP and check out:  
