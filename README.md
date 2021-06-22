@@ -81,7 +81,7 @@ Change the attribute table, fillable and hidden.
 class User extends Model implements AuthenticatableContract, AuthorizableContract
 {
     use Authenticatable, Authorizable;
-    protected $table = 'usuarios';
+    protected $table = 'app_user';
     protected $fillable = [
         'email',
     ];
