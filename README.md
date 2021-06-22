@@ -41,7 +41,14 @@ $router->group(['prefix' => '/api'], function () use ($router) {
 
 4.  Define the database configuration. If you use sqlite you have to create a empty file with this path /database/database.sqlite
 
-        .env
+        .env        
+        DB_CONNECTION=sqlite
+        #DB_HOST=127.0.0.1
+        #DB_PORT=3306
+        #DB_DATABASE=homestead
+        #DB_USERNAME=homestead
+        #DB_PASSWORD=secret
+
 
 5. With php artisan you can create your tables.
 
