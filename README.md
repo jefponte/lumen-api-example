@@ -26,9 +26,9 @@ class MovieController extends Controller
 4. Call the method you created in routes file: 
 
 
-        /routes/web.php calling the controller method: 
+        ./routes/web.php 
 
-        
+
 ```php
 $router->group(['prefix' => '/api'], function () use ($router) {
     $router->get('/movie', 'MovieController@index');
