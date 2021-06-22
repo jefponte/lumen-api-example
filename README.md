@@ -81,7 +81,7 @@ class CriarTabelaSeries extends Migration
 
         php ./artisan migrate
 
-6. Create the models like 
+6. Create the models like this: 
 
         ./app/Movie.php 
         ./app/Credits.php 
@@ -90,23 +90,15 @@ class CriarTabelaSeries extends Migration
 
         $app->withEloquent();
 
-8. Run project with PHP:  
+8. Run project with PHP and check out:  
 
         php -S localhost:8000 -t ./public
 
 ## 03 Api With Authentication 
 
-1. Create laravel/lumen project: 
-
-        composer create-project --prefer-dist laravel/lumen 03-api-authentication
-
-2. Create your tables and the users table and add they fields in the migration. 
+9. Use the migration to create your authentication table. 
 
         php ./artisan make:migration criar_tabela_app_user --create=app_user
-
-3. Customize your migration adding the fields and then execute the migrations: 
-
-        php ./artisan migrate
 
 3. Mapping user class use preexisting class into ./app/User.php or ./app/Models/User.php. 
 Change the attribute table, fillable and hidden. 
@@ -124,20 +116,16 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     ];
 }
 ```
+3. Execute the migrations to create your table: 
+
+        php ./artisan migrate
 
 
-
-2. Get the library to use JWT authentication:
+4. Get the library to use JWT authentication:
 
         composer require firebase/php-jwt
 
-2. Add the middleware in your rout file: ./routes/web.php 
-```php
-$router->group(['prefix' => 'api', 'middleware' => 'auth'], function () use ($router) {
-
-});
-```
-3. Enable the Route Midleware in /bootstrap/app.php
+5. Enable the Route Midleware in /bootstrap/app.php
 
 ```php
 $app->routeMiddleware([
@@ -145,6 +133,10 @@ $app->routeMiddleware([
 ]);
 ```
 
-        php ./03-api-authentication/artisan make:migration criar_tabela_usuarios --create=usuarios
+6. Add the middleware in your rout file: ./routes/web.php 
+```php
+$router->group(['prefix' => 'api', 'middleware' => 'auth'], function () use ($router) {
 
+});
+```
 
