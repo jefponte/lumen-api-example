@@ -51,16 +51,17 @@ $router->group(['prefix' => '/api'], function () use ($router) {
 
 5. With php artisan you can create your tables.
 
-        php ./artisan make:migration criar_tabela_series --create=movie
-        php ./artisan make:migration criar_tabela_episodios --create=credits
+        php ./artisan make:migration create_table_movie --create=movie
+        php ./artisan make:migration create_table_credits --create=credits
 
 6.  The migrations will be created in the folder ./database/migrations. Add the fields in the migration files, like this example: 
 ```php
 
-class CriarTabelaSeries extends Migration
+class CreateTableMovie extends Migration
 {
     /**
      * Run the migrations.
+     *
      * @return void
      */
     public function up()
@@ -70,9 +71,9 @@ class CriarTabelaSeries extends Migration
             $table->string('title');
         });
     }
-
     /**
      * Reverse the migrations.
+     *
      * @return void
      */
     public function down()
@@ -80,7 +81,6 @@ class CriarTabelaSeries extends Migration
         Schema::dropIfExists('movie');
     }
 }
-
 ```
 
 7. Execute php artisan migrate to create your tables.  
