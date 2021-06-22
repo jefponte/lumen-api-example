@@ -133,7 +133,7 @@ class MovieController extends Controller
         $movie = Movie::find($id);
         if (is_null($movie)) {
             return response()->json([
-                'erro' => 'Recurso não encontrado'
+                'erro' => 'Resource not found'
             ], 404);
         }
         $movie->fill($request->all());
@@ -145,7 +145,7 @@ class MovieController extends Controller
         $qtdRecursosRemovidos = Movie::destroy($id);
         if ($qtdRecursosRemovidos === 0) {
             return response()->json([
-                'erro' => 'Recurso não encontrado'
+                'erro' => 'Resource not found'
             ], 404);
         }
         return response()->json('', 204);
