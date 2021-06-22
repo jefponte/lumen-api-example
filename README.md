@@ -48,7 +48,7 @@ Run project with PHP in folder ./public and then you can see it running at this 
         $app->withEloquent();
 ```
 
-6.  Define the database configuration in this ./.env. If you use sqlite you have to create a empty file with this path /database/database.sqlite
+5.  Define the database configuration in this ./.env. If you use sqlite you have to create a empty file with this path /database/database.sqlite
     
         DB_CONNECTION=sqlite
         #DB_HOST=127.0.0.1
@@ -101,6 +101,9 @@ class Movie extends Model
 11. Add the methods in your controller: ./app/Http/MovieController.php 
 
 ```php
+<?php
+
+
 namespace App\Http\Controllers;
 
 use App\Models\Movie;
@@ -108,9 +111,10 @@ use Illuminate\Http\Request;
 
 class MovieController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         return Movie::all();
+        
     }
     public function store(Request $request)
     {
