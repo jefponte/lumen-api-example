@@ -38,8 +38,13 @@ $router->group(['prefix' => '/api'], function () use ($router) {
 
 ## 02 Api with database mapping
 
+6. Enable the Eloquent, in ./bootstrap/app.php uncomment this line  
+```php
 
-4.  Define the database configuration in this ./.env. If you use sqlite you have to create a empty file with this path /database/database.sqlite
+        $app->withEloquent();
+```
+
+7.  Define the database configuration in this ./.env. If you use sqlite you have to create a empty file with this path /database/database.sqlite
     
         DB_CONNECTION=sqlite
         #DB_HOST=127.0.0.1
@@ -48,20 +53,15 @@ $router->group(['prefix' => '/api'], function () use ($router) {
         #DB_USERNAME=homestead
         #DB_PASSWORD=secret
 
-5. With php artisan you can create your tables.
+8. With php artisan you can create your tables.
 
         php ./artisan make:migration create_table_movie --create=movie
 
-6.  The migrations will be created in the folder ./database/migrations. Add the fields in the migration files, like this example: 
+9.  The migrations will be created in the folder ./database/migrations. Add the fields in the migration files, like this example: 
 ```php
 
 class CreateTableMovie extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('movie', function (Blueprint $table) {
@@ -69,23 +69,17 @@ class CreateTableMovie extends Migration
             $table->string('title');
         });
     }
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('movie');
     }
 }
 ```
-
-7. Execute php artisan migrate to create your tables.  
+10. Execute php artisan migrate to create your tables.  
 
         php ./artisan migrate
 
-6. Create the models to mapping the fields like this: ./app/Movie.php 
+11. Create the models to mapping the fields like this: ./app/Movie.php 
 ```php
 namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
@@ -96,7 +90,7 @@ class Movie extends Model
 }
 
 ```
-6. Add the methods in your controller: ./app/Http/MovieController.php 
+12. Add the methods in your controller: ./app/Http/MovieController.php 
 
 ```php
 
@@ -153,10 +147,8 @@ class MovieController extends Controller
 }
 ```
 
-7. Enable the Eloquent in ./bootstrap/app.php
 
-        $app->withEloquent();
-8. Add the ./routes/web.php: 
+13. Add the ./routes/web.php: 
 
 ```php
 $router->group(['prefix' => 'api'], function () use ($router) {
@@ -171,7 +163,7 @@ $router->group(['prefix' => 'api'], function () use ($router) {
 
 ```
 
-8. Run project with PHP and check out:  
+14. Run project with PHP and check out:  
 
         php -S localhost:8000 -t ./public
 
@@ -182,11 +174,11 @@ Create relationship is to easy. First create a tables:
         php ./artisan make:migration create_table_credits --create=credits
 ## 05 Api With Authentication 
 
-9. Use the migration to create your authentication table. 
+15. Use the migration to create your authentication table. 
 
         php ./artisan make:migration criar_tabela_app_user --create=app_user
 
-3. Mapping user class use preexisting class into ./app/User.php or ./app/Models/User.php. 
+16. Mapping user class use preexisting class into ./app/User.php or ./app/Models/User.php. 
 Change the attribute table, fillable and hidden. 
 
 ```php
@@ -202,16 +194,16 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     ];
 }
 ```
-3. Execute the migrations to create your table: 
+17. Execute the migrations to create your table: 
 
         php ./artisan migrate
 
 
-4. Get the library to use JWT authentication:
+18. Get the library to use JWT authentication:
 
         composer require firebase/php-jwt
 
-5. Enable the Route Midleware in /bootstrap/app.php
+19. Enable the Route Midleware in /bootstrap/app.php
 
 ```php
 $app->routeMiddleware([
@@ -219,7 +211,7 @@ $app->routeMiddleware([
 ]);
 ```
 
-6. Add the middleware add in the group rout you want to protect: 
+20. Add the middleware add in the group rout you want to protect: 
 
 ```php
 $router->group(['prefix' => 'api', 'middleware' => 'auth'], function () use ($router) {
