@@ -71,12 +71,17 @@ Your API is running in
 
         composer create-project --prefer-dist laravel/lumen 03-api-authentication
 
-2. Create your tables and the users table.
+2. Create your tables and the users table and add they fields in the migration. 
 
         php ./artisan make:migration criar_tabela_app_user --create=app_user
 
+3. Customize your migration adding the fields and then execute the migrations: 
+
+        php ./artisan migrate
+
 3. Mapping user class use preexisting class into ./app/User.php or ./app/Models/User.php. 
 Change the attribute table, fillable and hidden. 
+
 ```php
 class User extends Model implements AuthenticatableContract, AuthorizableContract
 {
