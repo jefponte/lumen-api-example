@@ -169,9 +169,57 @@ Run project with PHP and check out:
 
 ## 04 Api with relationship
 
-Create relationship is to easy. First create a tables: 
+13. Create another table with migrate: 
 
-        php ./artisan make:migration create_table_credits --create=credits
+        php ./artisan make:migration create_table_cast --create=cast
+
+14. Customize your new migrate: 
+
+```php
+class CriarTabelaCast extends Migration
+{
+    public function up()
+    {
+        Schema::create('cast', function (Blueprint $table) {
+            $table->tinyIncrements('id');
+            $table->integer('name');
+            $table->integer('movie_id');
+            $table->foreign('movie_id')
+                ->references('movie')
+                ->on('id');
+        });
+    }
+    public function down()
+    {
+        Schema::dropIfExists('cast');
+    }
+}
+
+```
+15.  Execute php artisan migrate to create your tables.  
+
+        php ./artisan migrate
+
+
+16. Create the model with method to inform the relationship
+```php
+
+class Cast extends Model
+{
+    public $timestamps = false;
+    protected $fillable = ['name', 'movie_id'];
+
+    public function movie()
+    {
+        return $this->belongsTo(Serie::class);
+    }
+}
+```
+17. Create the controller: 
+
+18. 
+
+
 ## 05 Api With Authentication 
 
 15. Use the migration to create your authentication table. 
