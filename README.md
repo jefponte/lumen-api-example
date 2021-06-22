@@ -71,9 +71,31 @@ Your API is running in
 
         composer create-project --prefer-dist laravel/lumen 03-api-authentication
 
+2. Create your tables and the users table.
+
+        php ./artisan make:migration criar_tabela_app_user --create=app_user
+
+3. Mapping user class use preexisting class into ./app/User.php or ./app/Models/User.php. 
+Change the attribute table, fillable and hidden. 
+```php
+class User extends Model implements AuthenticatableContract, AuthorizableContract
+{
+    use Authenticatable, Authorizable;
+    protected $table = 'usuarios';
+    protected $fillable = [
+        'email',
+    ];
+    protected $hidden = [
+        'password',
+    ];
+}
+```
+
+
+
 2. Get the library to use JWT authentication:
 
-        composer require ./firebase/php-jwt
+        composer require firebase/php-jwt
 
 2. Add the middleware in your rout file: ./routes/web.php 
 ```php
