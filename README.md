@@ -6,8 +6,7 @@ Here you can learn how to make a API with lumen/laravel.
 
 1. Create laravel/lumen project: 
 
-        composer create-project --prefer-dist laravel/lumen 01-simples-api
-
+        composer create-project --prefer-dist laravel/lumen your-project-name
 
 2. You can create your router in this file: 
 
@@ -19,9 +18,7 @@ Here you can learn how to make a API with lumen/laravel.
 
 3. Run project with PHP:  
 
-
         php -S localhost:8000 -t ./public
-
 
 Your API is running in 
 
@@ -29,25 +26,35 @@ Your API is running in
 
 ## 02 Api with database mapping
 
-1. Create laravel/lumen project: 
 
-        composer create-project --prefer-dist laravel/lumen 02-api-with-db
-
-2. You can create your router in this file: 
-
-        ./routes/web.php 
-
-
-3.  Define the database configuration. If you use sqlite you have to create a empty file with this path /database/database.sqlite
+4.  Define the database configuration. If you use sqlite you have to create a empty file with this path /database/database.sqlite
 
         .env
 
-4. With php artisan you can create your tables. 
+5. With php artisan you can create your tables. 
 
         php ./artisan make:migration criar_tabela_series --create=series
         php ./artisan make:migration criar_tabela_episodios --create=episodios
 
-5. Execute php artisan migrate and the migrations will be created in the folder ./database/migrations.
+6. Add the fields in the migration files, like this example: 
+```php
+class CriarTabelaSeries extends Migration
+{
+    public function up()
+    {
+        Schema::create('series', function (Blueprint $table) {
+            $table->tinyIncrements('id');
+            $table->string('nome')->unique();
+        });
+    }
+    public function down()
+    {
+        Schema::dropIfExists('series');
+    }
+}
+```
+
+7. Execute php artisan migrate and the migrations will be created in the folder ./database/migrations.
 
         php ./artisan migrate
 
