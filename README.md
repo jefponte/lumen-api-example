@@ -200,7 +200,7 @@ class CriarTabelaCast extends Migration
 15.  Execute php artisan migrate to create your tables. 
 
 
-        php ./artisan migrate
+php ./artisan migrate
 
 
 
