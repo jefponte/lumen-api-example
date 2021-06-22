@@ -38,8 +38,13 @@ Your API is running in
 
 6. Add the fields in the migration files, like this example: 
 ```php
+
 class CriarTabelaSeries extends Migration
 {
+    /**
+     * Run the migrations.
+     * @return void
+     */
     public function up()
     {
         Schema::create('series', function (Blueprint $table) {
@@ -47,11 +52,17 @@ class CriarTabelaSeries extends Migration
             $table->string('nome')->unique();
         });
     }
+
+    /**
+     * Reverse the migrations.
+     * @return void
+     */
     public function down()
     {
         Schema::dropIfExists('series');
     }
 }
+
 ```
 
 7. Execute php artisan migrate and the migrations will be created in the folder ./database/migrations.
