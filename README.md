@@ -8,21 +8,33 @@ Here you can learn how to make a API with lumen/laravel.
 
         composer create-project --prefer-dist laravel/lumen your-project-name
 
+3. Create your controller classes like this and the method you will call in the route: 
+
+        ./app/Http/Controllers/MovieController.php
+```php
+class MovieController extends Controller
+{
+     public function index(){
+         return [
+             "The Matrix",
+             "Django"
+         ];
+     }
+}
+```
 2. You can create your routes in this file: 
 
         ./routes/web.php 
 
-3. Create your controller class like this: 
 
-        ./app/Http/Controllers/SeriesController.php
 
-3. Run project with PHP:  
+4. Run project with PHP:  
 
         php -S localhost:8000 -t ./public
 
 Your API is running in 
 
-    http://localhost:8000/api/series
+    http://localhost:8000/api/movie
 
 ## 02 Api with database mapping
 
@@ -33,8 +45,8 @@ Your API is running in
 
 5. With php artisan you can create your tables.
 
-        php ./artisan make:migration criar_tabela_series --create=series
-        php ./artisan make:migration criar_tabela_episodios --create=episodios
+        php ./artisan make:migration criar_tabela_series --create=movie
+        php ./artisan make:migration criar_tabela_episodios --create=credits
 
 6.  The migrations will be created in the folder ./database/migrations. Add the fields in the migration files, like this example: 
 ```php
@@ -47,9 +59,9 @@ class CriarTabelaSeries extends Migration
      */
     public function up()
     {
-        Schema::create('series', function (Blueprint $table) {
+        Schema::create('movie', function (Blueprint $table) {
             $table->tinyIncrements('id');
-            $table->string('nome')->unique();
+            $table->string('title');
         });
     }
 
@@ -59,7 +71,7 @@ class CriarTabelaSeries extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('series');
+        Schema::dropIfExists('movie');
     }
 }
 
@@ -69,11 +81,10 @@ class CriarTabelaSeries extends Migration
 
         php ./artisan migrate
 
-
 6. Create the models like 
 
-        ./app/Serie.php 
-        ./app/Episodios.php 
+        ./app/Movie.php 
+        ./app/Credits.php 
 
 7. Enable the Eloquent in ./bootstrap/app.php
 

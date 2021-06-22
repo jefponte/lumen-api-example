@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-class SeriesController extends Controller
+class MovieController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -12,8 +12,8 @@ class SeriesController extends Controller
 
      public function index(){
          return [
-             "Loki",
-             "Ducktales"
+             "The Matrix",
+             "Django"
          ];
      }
 
