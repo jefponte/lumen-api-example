@@ -197,9 +197,10 @@ class CriarTabelaCast extends Migration
 
 ```
 15.  Execute php artisan migrate to create your tables. 
- 
 
-php ./artisan migrate
+
+        php ./artisan migrate
+
 
 
 16. Create the model with method to inform the relationship
