@@ -24,22 +24,17 @@ class MovieController extends Controller
      }
 }
 ```
-2. You can create your routes in this file: /routes/web.php calling the controller method: 
+5. You can create your routes in this file: /routes/web.php calling the controller method: 
 ```php
 $router->group(['prefix' => '/api'], function () use ($router) {
     $router->get('/movie', 'MovieController@index');
 });
 ```
 
-
-
-4. Run project with PHP:  
+6. Run project with PHP int folder ./public and then you can see it running at this addres http://localhost:8000/api/movie
 
         php -S localhost:8000 -t ./public
 
-Your API is running in 
-
-    http://localhost:8000/api/movie
 
 ## 02 Api with database mapping
 
