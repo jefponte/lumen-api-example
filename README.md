@@ -101,9 +101,6 @@ class Movie extends Model
 11. Add the methods in your controller: ./app/Http/MovieController.php 
 
 ```php
-<?php
-
-
 namespace App\Http\Controllers;
 
 use App\Models\Movie;
