@@ -133,10 +133,11 @@ $app->routeMiddleware([
 ]);
 ```
 
-6. Add the middleware in your rout file: ./routes/web.php 
+6. Add the middleware add in the group rout you want to protect: 
+
 ```php
 $router->group(['prefix' => 'api', 'middleware' => 'auth'], function () use ($router) {
-
+...
 });
 ```
 
