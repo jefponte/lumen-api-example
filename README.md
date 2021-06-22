@@ -31,12 +31,12 @@ Your API is running in
 
         .env
 
-5. With php artisan you can create your tables. 
+5. With php artisan you can create your tables.
 
         php ./artisan make:migration criar_tabela_series --create=series
         php ./artisan make:migration criar_tabela_episodios --create=episodios
 
-6. Add the fields in the migration files, like this example: 
+6.  The migrations will be created in the folder ./database/migrations. Add the fields in the migration files, like this example: 
 ```php
 
 class CriarTabelaSeries extends Migration
@@ -65,7 +65,7 @@ class CriarTabelaSeries extends Migration
 
 ```
 
-7. Execute php artisan migrate and the migrations will be created in the folder ./database/migrations.
+7. Execute php artisan migrate to create your tables.  
 
         php ./artisan migrate
 
