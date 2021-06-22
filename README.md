@@ -110,7 +110,8 @@ class MovieController extends Controller
 {
     public function index()
     {
-        return Movie::all();
+        //return Movie::all(); -> fetch all without pagination
+        return $this->classe::paginate($request->per_page);
     }
     public function store(Request $request)
     {
@@ -122,11 +123,11 @@ class MovieController extends Controller
     } 
     public function show(int $id)
     {
-        $serie = Movie::find($id);
-        if (is_null($serie)) {
+        $movie = Movie::find($id);
+        if (is_null($movie)) {
             return response()->json('', 204);
         }
-        return response()->json($serie);
+        return response()->json($movie);
     }
     public function update(int $id, Request $request)
     {
