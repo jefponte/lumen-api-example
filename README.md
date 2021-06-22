@@ -52,7 +52,7 @@ $router->group(['prefix' => '/api'], function () use ($router) {
 5. With php artisan you can create your tables.
 
         php ./artisan make:migration create_table_movie --create=movie
-        php ./artisan make:migration create_table_credits --create=credits
+
 
 6.  The migrations will be created in the folder ./database/migrations. Add the fields in the migration files, like this example: 
 ```php
@@ -101,7 +101,9 @@ class CreateTableMovie extends Migration
 
 ## 04 Api with relationship
 
-Create relationship is to easy. 
+Create relationship is to easy. First create a tables: 
+
+        php ./artisan make:migration create_table_credits --create=credits
 ## 05 Api With Authentication 
 
 9. Use the migration to create your authentication table. 
