@@ -31,20 +31,20 @@ $router->group(['prefix' => '/api'], function () use ($router) {
 });
 ```
 
-5. Run project with PHP int folder ./public and then you can see it running at this addres http://localhost:8000/api/movie
+Run project with PHP int folder ./public and then you can see it running at this addres http://localhost:8000/api/movie
 
         php -S localhost:8000 -t ./public
 
 
 ## 02 Api with database mapping
 
-6. Enable the Eloquent, in ./bootstrap/app.php uncomment this line  
+5. Enable the Eloquent, in ./bootstrap/app.php uncomment this line  
 ```php
 
         $app->withEloquent();
 ```
 
-7.  Define the database configuration in this ./.env. If you use sqlite you have to create a empty file with this path /database/database.sqlite
+6.  Define the database configuration in this ./.env. If you use sqlite you have to create a empty file with this path /database/database.sqlite
     
         DB_CONNECTION=sqlite
         #DB_HOST=127.0.0.1
@@ -53,11 +53,11 @@ $router->group(['prefix' => '/api'], function () use ($router) {
         #DB_USERNAME=homestead
         #DB_PASSWORD=secret
 
-8. With php artisan you can create your tables.
+7. With php artisan you can create your tables.
 
         php ./artisan make:migration create_table_movie --create=movie
 
-9.  The migrations will be created in the folder ./database/migrations. Add the fields in the migration files, like this example: 
+8.  The migrations will be created in the folder ./database/migrations. Add the fields in the migration files, like this example: 
 ```php
 
 class CreateTableMovie extends Migration
@@ -75,11 +75,11 @@ class CreateTableMovie extends Migration
     }
 }
 ```
-10. Execute php artisan migrate to create your tables.  
+9. Execute php artisan migrate to create your tables.  
 
         php ./artisan migrate
 
-11. Create the models to mapping the fields like this: ./app/Movie.php 
+10. Create the models to mapping the fields like this: ./app/Movie.php 
 ```php
 namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
@@ -90,7 +90,7 @@ class Movie extends Model
 }
 
 ```
-12. Add the methods in your controller: ./app/Http/MovieController.php 
+11. Add the methods in your controller: ./app/Http/MovieController.php 
 
 ```php
 
@@ -148,7 +148,7 @@ class MovieController extends Controller
 ```
 
 
-13. Add the routes in this file ./routes/web.php: 
+12. Add the routes in this file ./routes/web.php: 
 
 ```php
 $router->group(['prefix' => 'api'], function () use ($router) {
@@ -163,7 +163,7 @@ $router->group(['prefix' => 'api'], function () use ($router) {
 
 ```
 
-14. Run project with PHP and check out:  
+Run project with PHP and check out:  
 
         php -S localhost:8000 -t ./public
 
