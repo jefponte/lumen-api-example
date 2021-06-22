@@ -11,7 +11,7 @@ Here you can learn how to make a API with lumen/laravel.
 2. Create your controller and add the method you will call in the route:
         
         ./app/Http/Controllers/MovieController.php
-        
+
 ```php
 class MovieController extends Controller
 {
@@ -23,7 +23,12 @@ class MovieController extends Controller
      }
 }
 ```
-4. Create your routes in this file: /routes/web.php calling the controller method: 
+4. Call the method you created in routes file: 
+
+
+        /routes/web.php calling the controller method: 
+
+        
 ```php
 $router->group(['prefix' => '/api'], function () use ($router) {
     $router->get('/movie', 'MovieController@index');
