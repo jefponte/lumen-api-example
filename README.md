@@ -39,9 +39,8 @@ $router->group(['prefix' => '/api'], function () use ($router) {
 ## 02 Api with database mapping
 
 
-4.  Define the database configuration. If you use sqlite you have to create a empty file with this path /database/database.sqlite
-
-        .env        
+4.  Define the database configuration int the .env. If you use sqlite you have to create a empty file with this path /database/database.sqlite
+    
         DB_CONNECTION=sqlite
         #DB_HOST=127.0.0.1
         #DB_PORT=3306
