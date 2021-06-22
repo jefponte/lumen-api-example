@@ -90,17 +90,17 @@ class CreateTableMovie extends Migration
 ```php
 namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
+
 class Movie extends Model
 {
+    protected $table = 'movie';
     public $timestamps = false;
     protected $fillable = ['title'];
 }
-
 ```
 11. Add the methods in your controller: ./app/Http/MovieController.php 
 
 ```php
-
 namespace App\Http\Controllers;
 
 use App\Models\Movie;
@@ -110,8 +110,7 @@ class MovieController extends Controller
 {
     public function index()
     {
-        //return Movie::all(); -> fetch all without pagination
-        return $this->classe::paginate($request->per_page);
+        return Movie::all();
     }
     public function store(Request $request)
     {
@@ -216,6 +215,7 @@ php ./artisan migrate
 
 class Cast extends Model
 {
+    protected $table = 'cast';
     public $timestamps = false;
     protected $fillable = ['name', 'movie_id'];
 
