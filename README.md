@@ -156,7 +156,7 @@ class MovieController extends Controller
 7. Enable the Eloquent in ./bootstrap/app.php
 
         $app->withEloquent();
-8. Add the ./routs/web.php: 
+8. Add the ./routes/web.php: 
 
 ```php
 $router->group(['prefix' => 'api'], function () use ($router) {
