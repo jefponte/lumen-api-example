@@ -218,7 +218,7 @@ class Cast extends Model
     }
 }
 ```
-17. A way to otimize code is create a base controller to extends anothers: 
+17. A way to otimize code is create a base controller: 
 
 
 ```php
@@ -285,7 +285,6 @@ abstract class BaseController
 
 ```php
 
-
 namespace App\Http\Controllers;
 
 use App\Cast;
@@ -296,7 +295,6 @@ class CastController extends BaseController
     {
         $this->classe = Episodio::class;
     }
-
     public function fetchByMovie(int $movieId)
     {
         $cast = Cast::query()
@@ -333,6 +331,11 @@ Run project with PHP and check out:
 
 ## 05 Api With Authentication 
 
+
+18. Get the library to use JWT authentication:
+
+        composer require firebase/php-jwt
+
 15. Use the migration to create your authentication table. 
 
         php ./artisan make:migration criar_tabela_app_user --create=app_user
@@ -357,10 +360,6 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 
         php ./artisan migrate
 
-
-18. Get the library to use JWT authentication:
-
-        composer require firebase/php-jwt
 
 19. Enable the Route Midleware in /bootstrap/app.php
 
