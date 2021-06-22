@@ -85,7 +85,7 @@ class CreateTableMovie extends Migration
 
         php ./artisan migrate
 
-6. Create the models like this: ./app/Movie.php 
+6. Create the models to mapping the fields like this: ./app/Movie.php 
 ```php
 namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
@@ -93,7 +93,6 @@ class Movie extends Model
 {
     public $timestamps = false;
     protected $fillable = ['title'];
-
 }
 
 ```
@@ -157,6 +156,20 @@ class MovieController extends Controller
 7. Enable the Eloquent in ./bootstrap/app.php
 
         $app->withEloquent();
+8. Add the ./routs/web.php: 
+
+```php
+$router->group(['prefix' => 'api'], function () use ($router) {
+    $router->group(['prefix' => 'movie'], function () use ($router) {
+        $router->post('', 'MovieController@store');
+        $router->get('', 'MovieController@index');
+        $router->get('{id}', 'MovieController@show');
+        $router->put('{id}', 'MovieController@update');
+        $router->delete('{id}', 'MovieController@destroy');
+    });
+});
+
+```
 
 8. Run project with PHP and check out:  
 
