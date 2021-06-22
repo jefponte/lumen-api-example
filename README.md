@@ -218,8 +218,111 @@ class Cast extends Model
     }
 }
 ```
-17. Create the controller: 
+17. Create the controller a way to otimize code is create a base controller to extends anothers: 
+```php
 
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+
+abstract class BaseController
+{
+    protected $classe;
+
+    public function index(Request $request)
+    {
+        return $this->classe::paginate($request->per_page);
+    }
+
+    public function store(Request $request)
+    {
+        return response()
+            ->json(
+                $this->classe::create($request->all()),
+                201
+            );
+    }
+
+    public function show(int $id)
+    {
+        $recurso = $this->classe::find($id);
+        if (is_null($recurso)) {
+            return response()->json('', 204);
+        }
+
+        return response()->json($recurso);
+    }
+
+    public function update(int $id, Request $request)
+    {
+        $recurso = $this->classe::find($id);
+        if (is_null($recurso)) {
+            return response()->json([
+                'erro' => 'Recurso não encontrado'
+            ], 404);
+        }
+        $recurso->fill($request->all());
+        $recurso->save();
+
+        return $recurso;
+    }
+
+    public function destroy(int $id)
+    {
+        $qtdRecursosRemovidos = $this->classe::destroy($id);
+        if ($qtdRecursosRemovidos === 0) {
+            return response()->json([
+                'erro' => 'Recurso não encontrado'
+            ], 404);
+        }
+
+        return response()->json('', 204);
+    }
+}
+```
+
+
+```php
+
+
+namespace App\Http\Controllers;
+
+use App\Episodio;
+
+class EpisodiosController extends BaseController
+{
+    public function __construct()
+    {
+        $this->classe = Episodio::class;
+    }
+
+    public function buscaPorSerie(int $serieId)
+    {
+        $episodios = Episodio::query()
+            ->where('serie_id', $serieId)
+            ->paginate();
+
+        return $episodios;
+    }
+}
+```
+
+
+```php
+
+namespace App\Http\Controllers;
+
+use App\Serie;
+
+class SeriesController extends BaseController
+{
+    public function __construct()
+    {
+        $this->classe = Serie::class;
+    }
+}
+
+```
 18. 
 
 
