@@ -88,6 +88,21 @@ class CreateTableMovie extends Migration
 6. Create the models like this: ./app/Movie.php 
 ```php
 
+<?php
+namespace App\Models;
+use Illuminate\Database\Eloquent\Model;
+class Movie extends Model
+{
+    public $timestamps = false;
+    protected $fillable = ['title'];
+
+}
+
+```
+6. Add the methods in your controller: ./app/Http/MovieController.php 
+
+```php
+
 namespace App\Http\Controllers;
 
 use App\Models\Movie;
