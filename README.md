@@ -214,11 +214,13 @@ class Cast extends Model
 
     public function movie()
     {
-        return $this->belongsTo(Serie::class);
+        return $this->belongsTo(Movie::class);
     }
 }
 ```
-17. Create the controller a way to otimize code is create a base controller to extends anothers: 
+17. A way to otimize code is create a base controller to extends anothers: 
+
+
 ```php
 
 namespace App\Http\Controllers;
@@ -242,29 +244,28 @@ abstract class BaseController
                 201
             );
     }
-
     public function show(int $id)
     {
-        $recurso = $this->classe::find($id);
-        if (is_null($recurso)) {
+        $resource = $this->classe::find($id);
+        if (is_null($resource)) {
             return response()->json('', 204);
         }
 
-        return response()->json($recurso);
+        return response()->json($resource);
     }
 
     public function update(int $id, Request $request)
     {
-        $recurso = $this->classe::find($id);
-        if (is_null($recurso)) {
+        $resource = $this->classe::find($id);
+        if (is_null($resource)) {
             return response()->json([
-                'erro' => 'Recurso não encontrado'
+                'erro' => 'Resource not found'
             ], 404);
         }
-        $recurso->fill($request->all());
-        $recurso->save();
+        $resource->fill($request->all());
+        $resource->save();
 
-        return $recurso;
+        return $resource;
     }
 
     public function destroy(int $id)
@@ -272,7 +273,7 @@ abstract class BaseController
         $qtdRecursosRemovidos = $this->classe::destroy($id);
         if ($qtdRecursosRemovidos === 0) {
             return response()->json([
-                'erro' => 'Recurso não encontrado'
+                'erro' => 'resource not found'
             ], 404);
         }
 
@@ -287,22 +288,22 @@ abstract class BaseController
 
 namespace App\Http\Controllers;
 
-use App\Episodio;
+use App\Cast;
 
-class EpisodiosController extends BaseController
+class CastController extends BaseController
 {
     public function __construct()
     {
         $this->classe = Episodio::class;
     }
 
-    public function buscaPorSerie(int $serieId)
+    public function fetchByMovie(int $movieId)
     {
-        $episodios = Episodio::query()
-            ->where('serie_id', $serieId)
+        $cast = Cast::query()
+            ->where('movie_id', $movieId)
             ->paginate();
 
-        return $episodios;
+        return $cast;
     }
 }
 ```
@@ -312,18 +313,22 @@ class EpisodiosController extends BaseController
 
 namespace App\Http\Controllers;
 
-use App\Serie;
+use App\Movie;
 
-class SeriesController extends BaseController
+class MovieController extends BaseController
 {
     public function __construct()
     {
-        $this->classe = Serie::class;
+        $this->classe = Movie::class;
     }
 }
 
 ```
-18. 
+
+
+Run project with PHP and check out:  
+
+        php -S localhost:8000 -t ./public
 
 
 ## 05 Api With Authentication 
