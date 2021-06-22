@@ -87,8 +87,6 @@ class CreateTableMovie extends Migration
 
 6. Create the models like this: ./app/Movie.php 
 ```php
-
-<?php
 namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 class Movie extends Model
