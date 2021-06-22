@@ -8,7 +8,7 @@ Here you can learn how to make a API with lumen/laravel.
 
         composer create-project --prefer-dist laravel/lumen your-project-name
 
-2. You can create your router in this file: 
+2. You can create your routes in this file: 
 
         ./routes/web.php 
 
