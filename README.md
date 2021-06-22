@@ -148,7 +148,7 @@ class MovieController extends Controller
 ```
 
 
-13. Add the ./routes/web.php: 
+13. Add the routes in this file ./routes/web.php: 
 
 ```php
 $router->group(['prefix' => 'api'], function () use ($router) {
