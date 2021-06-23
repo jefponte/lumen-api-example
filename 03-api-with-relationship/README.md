@@ -244,7 +244,7 @@ $router->group(['prefix' => 'api'], function () use ($router) {
         $router->put('{id}', 'MovieController@update');
         $router->delete('{id}', 'MovieController@destroy');
 
-        $router->get('{serieId}/episodios', 'CastController@fetchByMovie');
+        $router->get('{movieId}/cast', 'CastController@fetchByMovie');
     });
 
     $router->group(['prefix' => 'cast'], function () use ($router) {
