@@ -84,9 +84,6 @@ class CreateTableCast extends Migration
 7. Create the models to mapping the fields like this /app/Movie.php 
 
 ```php
-
-
-
 namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
@@ -97,7 +94,32 @@ class Movie extends Model
     protected $fillable = ['title'];
 }
 ```
+```php
 
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Cast extends Model{
+    protected $table = 'cast';
+    public $timestamps = false;
+    protected $fillable = ['name', 'movie_id'];
+    protected $appends = ['links'];
+    
+    public function movie()
+    {
+        return $this->belongsTo(Movie::class);
+    }
+    public function getLinksAttribute($links): array
+    {
+        return [
+            'self' => '/api/cast/' . $this->id,
+            'movie' => '/api/movie/' . $this->movie_id
+        ];
+    }
+}
+
+```
 
 13. Create another table with migrate: 
 
