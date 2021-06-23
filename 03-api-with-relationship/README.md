@@ -105,7 +105,7 @@ class Cast extends Model{
     public $timestamps = false;
     protected $fillable = ['name', 'movie_id'];
     protected $appends = ['links'];
-    
+
     public function movie()
     {
         return $this->belongsTo(Movie::class);
@@ -121,63 +121,11 @@ class Cast extends Model{
 
 ```
 
-13. Create another table with migrate: 
-
-        php ./artisan make:migration create_table_cast --create=cast
-
-14. Customize your new migrate: 
-
-```php
-class CriarTabelaCast extends Migration
-{
-    public function up()
-    {
-        Schema::create('cast', function (Blueprint $table) {
-            $table->tinyIncrements('id');
-            $table->integer('name');
-            $table->integer('movie_id');
-            $table->foreign('movie_id')
-                ->references('movie')
-                ->on('id');
-        });
-    }
-    public function down()
-    {
-        Schema::dropIfExists('cast');
-    }
-}
-
-```
-
-
-
-15.  Execute php artisan migrate to create your tables. 
-
-
-        php ./artisan migrate
-
-
-
-16. Create the model with method to inform the relationship
-```php
-
-class Cast extends Model
-{
-    protected $table = 'cast';
-    public $timestamps = false;
-    protected $fillable = ['name', 'movie_id'];
-
-    public function movie()
-    {
-        return $this->belongsTo(Movie::class);
-    }
-}
-```
-17. A way to otimize code is create a base controller: 
+17. A way to otimize code is creating a base controller: 
 
 
 ```php
-
+<?php
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -199,28 +147,29 @@ abstract class BaseController
                 201
             );
     }
+
     public function show(int $id)
     {
-        $resource = $this->classe::find($id);
-        if (is_null($resource)) {
+        $recurso = $this->classe::find($id);
+        if (is_null($recurso)) {
             return response()->json('', 204);
         }
 
-        return response()->json($resource);
+        return response()->json($recurso);
     }
 
     public function update(int $id, Request $request)
     {
-        $resource = $this->classe::find($id);
-        if (is_null($resource)) {
+        $recurso = $this->classe::find($id);
+        if (is_null($recurso)) {
             return response()->json([
                 'erro' => 'Resource not found'
             ], 404);
         }
-        $resource->fill($request->all());
-        $resource->save();
+        $recurso->fill($request->all());
+        $recurso->save();
 
-        return $resource;
+        return $recurso;
     }
 
     public function destroy(int $id)
@@ -228,13 +177,14 @@ abstract class BaseController
         $qtdRecursosRemovidos = $this->classe::destroy($id);
         if ($qtdRecursosRemovidos === 0) {
             return response()->json([
-                'erro' => 'resource not found'
+                'erro' => 'Resource not found'
             ], 404);
         }
 
         return response()->json('', 204);
     }
 }
+
 ```
 
 
@@ -242,7 +192,7 @@ abstract class BaseController
 
 namespace App\Http\Controllers;
 
-use App\Movie;
+use App\Models\Movie;
 
 class MovieController extends BaseController
 {
@@ -252,6 +202,7 @@ class MovieController extends BaseController
     }
 }
 
+
 ```
 
 
@@ -259,24 +210,25 @@ class MovieController extends BaseController
 
 namespace App\Http\Controllers;
 
-use App\Cast;
-use PhpParser\Node\Expr\Cast as ExprCast;
+use App\Models\Cast;
 
 class CastController extends BaseController
 {
     public function __construct()
     {
-        $this->classe = Episodio::class;
+        $this->classe = Cast::class;
     }
+
     public function fetchByMovie(int $movieId)
     {
-        $cast = ExprCast::query()
+        $casts = Cast::query()
             ->where('movie_id', $movieId)
             ->paginate();
 
-        return $cast;
+        return $casts;
     }
 }
+
 ```
 
 

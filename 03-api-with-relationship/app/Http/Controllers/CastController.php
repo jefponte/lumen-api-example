@@ -3,7 +3,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cast;
 
-class EpisodiosController extends BaseController
+class CastController extends BaseController
 {
     public function __construct()
     {
