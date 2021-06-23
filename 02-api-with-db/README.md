@@ -4,19 +4,15 @@
 
         composer create-project --prefer-dist laravel/lumen your-project-name
 
-2. Create your controller and add the method you will call in the route:
         
-        ./app/Http/Controllers/MovieController.php
-
-
-
-3. Enable the Eloquent, in ./bootstrap/app.php uncomment this line  
+2. Enable the Eloquent, in ./bootstrap/app.php uncomment this line  
 ```php
 
         $app->withEloquent();
 ```
 
-4.  Define the database configuration in this ./.env. If you use sqlite you have to create a empty file with this path /database/database.sqlite
+
+3.  Define the database configuration in this ./.env. If you use sqlite you have to create a empty file with this path /database/database.sqlite
     
         DB_CONNECTION=sqlite
         #DB_HOST=127.0.0.1
@@ -25,11 +21,13 @@
         #DB_USERNAME=homestead
         #DB_PASSWORD=secret
 
-5. With php artisan you can create your tables.
+4. With php artisan you can create your tables.
 
         php ./artisan make:migration create_table_movie --create=movie
 
-6.  The migrations will be created in the folder ./database/migrations. Add the fields in the migration files, like this example: 
+        
+
+5.  The migrations will be created in the folder ./database/migrations. Add the fields in the migration files, like this example: 
 ```php
 
 class CreateTableMovie extends Migration
@@ -47,13 +45,13 @@ class CreateTableMovie extends Migration
     }
 }
 ```
-7. Execute php artisan migrate to create your tables.  
+
+6. Execute php artisan migrate to create your tables.  
 
         php ./artisan migrate
 
-8. Create the models to mapping the fields like this: 
 
-        ./app/Movie.php 
+7. Create the models to mapping the fields like this /app/Movie.php 
 
 ```php
 namespace App\Models;
@@ -66,7 +64,8 @@ class Movie extends Model
     protected $fillable = ['title'];
 }
 ```
-9. Add the methods in your controller: ./app/Http/MovieController.php 
+
+8. Create your controller and add the method you will call in the route ./app/Http/Controllers/MovieController.php: 
 
 ```php
 namespace App\Http\Controllers;
@@ -123,7 +122,7 @@ class MovieController extends Controller
 ```
 
 
-10. Add the routes in this file ./routes/web.php: 
+9. Add the routes in this file ./routes/web.php: 
 
 ```php
 $router->group(['prefix' => 'api'], function () use ($router) {
