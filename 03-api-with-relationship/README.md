@@ -229,6 +229,33 @@ class CastController extends BaseController
     }
 }
 
+
+
+```
+18. Call the methods in the routes file:  
+
+```php
+
+$router->group(['prefix' => 'api'], function () use ($router) {
+    $router->group(['prefix' => 'movie'], function () use ($router) {
+        $router->post('', 'MovieController@store');
+        $router->get('', 'MovieController@index');
+        $router->get('{id}', 'MovieController@show');
+        $router->put('{id}', 'MovieController@update');
+        $router->delete('{id}', 'MovieController@destroy');
+
+        $router->get('{serieId}/episodios', 'CastController@fetchByMovie');
+    });
+
+    $router->group(['prefix' => 'cast'], function () use ($router) {
+        $router->post('', 'CastController@store');
+        $router->get('', 'CastController@index');
+        $router->get('{id}', 'CastController@show');
+        $router->put('{id}', 'CastController@update');
+        $router->delete('{id}', 'CastController@destroy');
+    });
+});
+
 ```
 
 
