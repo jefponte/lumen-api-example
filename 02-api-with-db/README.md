@@ -66,7 +66,7 @@ class Movie extends Model
     protected $fillable = ['title'];
 }
 ```
-11. Add the methods in your controller: ./app/Http/MovieController.php 
+9. Add the methods in your controller: ./app/Http/MovieController.php 
 
 ```php
 namespace App\Http\Controllers;
@@ -123,7 +123,7 @@ class MovieController extends Controller
 ```
 
 
-9. Add the routes in this file ./routes/web.php: 
+10. Add the routes in this file ./routes/web.php: 
 
 ```php
 $router->group(['prefix' => 'api'], function () use ($router) {
