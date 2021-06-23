@@ -16,3 +16,12 @@
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
+$router->group(['prefix' => 'api'], function () use ($router) {
+    $router->group(['prefix' => 'movie'], function () use ($router) {
+        $router->post('', 'MovieController@store');
+        $router->get('', 'MovieController@index');
+        $router->get('{id}', 'MovieController@show');
+        $router->put('{id}', 'MovieController@update');
+        $router->delete('{id}', 'MovieController@destroy');
+    });
+});

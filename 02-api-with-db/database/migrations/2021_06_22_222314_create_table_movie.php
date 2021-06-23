@@ -19,7 +19,6 @@ class CreateTableMovie extends Migration
         });
     }
 
-
     /**
      * Reverse the migrations.
      *

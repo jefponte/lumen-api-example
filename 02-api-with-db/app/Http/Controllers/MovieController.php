@@ -1,5 +1,6 @@
 <?php
 
+
 namespace App\Http\Controllers;
 
 use App\Models\Movie;
@@ -7,9 +8,10 @@ use Illuminate\Http\Request;
 
 class MovieController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         return Movie::all();
+        
     }
     public function store(Request $request)
     {
@@ -21,18 +23,18 @@ class MovieController extends Controller
     } 
     public function show(int $id)
     {
-        $serie = Movie::find($id);
-        if (is_null($serie)) {
+        $movie = Movie::find($id);
+        if (is_null($movie)) {
             return response()->json('', 204);
         }
-        return response()->json($serie);
+        return response()->json($movie);
     }
     public function update(int $id, Request $request)
     {
         $movie = Movie::find($id);
         if (is_null($movie)) {
             return response()->json([
-                'erro' => 'Recurso não encontrado'
+                'erro' => 'Resource not found'
             ], 404);
         }
         $movie->fill($request->all());
@@ -44,7 +46,7 @@ class MovieController extends Controller
         $qtdRecursosRemovidos = Movie::destroy($id);
         if ($qtdRecursosRemovidos === 0) {
             return response()->json([
-                'erro' => 'Recurso não encontrado'
+                'erro' => 'Resource not found'
             ], 404);
         }
         return response()->json('', 204);
