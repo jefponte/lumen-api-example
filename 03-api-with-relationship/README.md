@@ -47,28 +47,6 @@ class CreateTableMovie extends Migration
     }
 }
 ```
-```php
-
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
-
-class CreateTableMovie extends Migration
-{
-    public function up()
-    {
-        Schema::create('movie', function (Blueprint $table) {
-            $table->tinyIncrements('id');
-            $table->string('title');
-        });
-    }
-    public function down()
-    {
-        Schema::dropIfExists('movie');
-    }
-}
-
-```
 
 ```php
 
