@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -21,28 +20,29 @@ abstract class BaseController
                 201
             );
     }
+
     public function show(int $id)
     {
-        $resource = $this->classe::find($id);
-        if (is_null($resource)) {
+        $recurso = $this->classe::find($id);
+        if (is_null($recurso)) {
             return response()->json('', 204);
         }
 
-        return response()->json($resource);
+        return response()->json($recurso);
     }
 
     public function update(int $id, Request $request)
     {
-        $resource = $this->classe::find($id);
-        if (is_null($resource)) {
+        $recurso = $this->classe::find($id);
+        if (is_null($recurso)) {
             return response()->json([
                 'erro' => 'Resource not found'
             ], 404);
         }
-        $resource->fill($request->all());
-        $resource->save();
+        $recurso->fill($request->all());
+        $recurso->save();
 
-        return $resource;
+        return $recurso;
     }
 
     public function destroy(int $id)
@@ -50,7 +50,7 @@ abstract class BaseController
         $qtdRecursosRemovidos = $this->classe::destroy($id);
         if ($qtdRecursosRemovidos === 0) {
             return response()->json([
-                'erro' => 'resource not found'
+                'erro' => 'Resource not found'
             ], 404);
         }
 

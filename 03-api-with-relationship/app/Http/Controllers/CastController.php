@@ -1,22 +1,21 @@
 <?php
-
 namespace App\Http\Controllers;
 
-use App\Cast;
-use PhpParser\Node\Expr\Cast as ExprCast;
+use App\Models\Cast;
 
-class CastController extends BaseController
+class EpisodiosController extends BaseController
 {
     public function __construct()
     {
-        $this->classe = Episodio::class;
+        $this->classe = Cast::class;
     }
+
     public function fetchByMovie(int $movieId)
     {
-        $cast = ExprCast::query()
+        $casts = Cast::query()
             ->where('movie_id', $movieId)
             ->paginate();
 
-        return $cast;
+        return $casts;
     }
 }
