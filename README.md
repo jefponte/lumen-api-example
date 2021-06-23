@@ -1,10 +1,9 @@
 # lumen-api-examples
 Here you can learn how to make a API with lumen/laravel.
 
-<a href="https://github.com/jefponte/lumen-api-example/tree/develop/01-simple-api#readme">01 Simple API</a> -> Basic and simple project to create a API REST. Click here to see. 
+1. <a href="https://github.com/jefponte/lumen-api-example/tree/develop/01-simple-api#readme">01 Simple API</a>
 
-
-## 02 Api with database mapping
+2. <a href="https://github.com/jefponte/lumen-api-example/blob/develop/02-api-with-db/README.md">02 Api with database mapping</a>
 
 4. Enable the Eloquent, in ./bootstrap/app.php uncomment this line  
 ```php
