@@ -1,24 +1,165 @@
-# Lumen PHP Framework
 
-[![Build Status](https://travis-ci.org/laravel/lumen-framework.svg)](https://travis-ci.org/laravel/lumen-framework)
-[![Total Downloads](https://img.shields.io/packagist/dt/laravel/framework)](https://packagist.org/packages/laravel/lumen-framework)
-[![Latest Stable Version](https://img.shields.io/packagist/v/laravel/framework)](https://packagist.org/packages/laravel/lumen-framework)
-[![License](https://img.shields.io/packagist/l/laravel/framework)](https://packagist.org/packages/laravel/lumen-framework)
+13. Create another table with migrate: 
 
-Laravel Lumen is a stunningly fast PHP micro-framework for building web applications with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Lumen attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as routing, database abstraction, queueing, and caching.
+        php ./artisan make:migration create_table_cast --create=cast
 
-## Official Documentation
+14. Customize your new migrate: 
 
-Documentation for the framework can be found on the [Lumen website](https://lumen.laravel.com/docs).
+```php
+class CriarTabelaCast extends Migration
+{
+    public function up()
+    {
+        Schema::create('cast', function (Blueprint $table) {
+            $table->tinyIncrements('id');
+            $table->integer('name');
+            $table->integer('movie_id');
+            $table->foreign('movie_id')
+                ->references('movie')
+                ->on('id');
+        });
+    }
+    public function down()
+    {
+        Schema::dropIfExists('cast');
+    }
+}
 
-## Contributing
+```
 
-Thank you for considering contributing to Lumen! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
-## Security Vulnerabilities
 
-If you discover a security vulnerability within Lumen, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+15.  Execute php artisan migrate to create your tables. 
 
-## License
 
-The Lumen framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+        php ./artisan migrate
+
+
+
+16. Create the model with method to inform the relationship
+```php
+
+class Cast extends Model
+{
+    protected $table = 'cast';
+    public $timestamps = false;
+    protected $fillable = ['name', 'movie_id'];
+
+    public function movie()
+    {
+        return $this->belongsTo(Movie::class);
+    }
+}
+```
+17. A way to otimize code is create a base controller: 
+
+
+```php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+
+abstract class BaseController
+{
+    protected $classe;
+
+    public function index(Request $request)
+    {
+        return $this->classe::paginate($request->per_page);
+    }
+
+    public function store(Request $request)
+    {
+        return response()
+            ->json(
+                $this->classe::create($request->all()),
+                201
+            );
+    }
+    public function show(int $id)
+    {
+        $resource = $this->classe::find($id);
+        if (is_null($resource)) {
+            return response()->json('', 204);
+        }
+
+        return response()->json($resource);
+    }
+
+    public function update(int $id, Request $request)
+    {
+        $resource = $this->classe::find($id);
+        if (is_null($resource)) {
+            return response()->json([
+                'erro' => 'Resource not found'
+            ], 404);
+        }
+        $resource->fill($request->all());
+        $resource->save();
+
+        return $resource;
+    }
+
+    public function destroy(int $id)
+    {
+        $qtdRecursosRemovidos = $this->classe::destroy($id);
+        if ($qtdRecursosRemovidos === 0) {
+            return response()->json([
+                'erro' => 'resource not found'
+            ], 404);
+        }
+
+        return response()->json('', 204);
+    }
+}
+```
+
+
+```php
+
+namespace App\Http\Controllers;
+
+use App\Movie;
+
+class MovieController extends BaseController
+{
+    public function __construct()
+    {
+        $this->classe = Movie::class;
+    }
+}
+
+```
+
+
+```php
+
+namespace App\Http\Controllers;
+
+use App\Cast;
+use PhpParser\Node\Expr\Cast as ExprCast;
+
+class CastController extends BaseController
+{
+    public function __construct()
+    {
+        $this->classe = Episodio::class;
+    }
+    public function fetchByMovie(int $movieId)
+    {
+        $cast = ExprCast::query()
+            ->where('movie_id', $movieId)
+            ->paginate();
+
+        return $cast;
+    }
+}
+```
+
+
+
+
+Run project with PHP and check out:  
+
+        php -S localhost:8000 -t ./public
