@@ -71,21 +71,9 @@ class UserSeeder extends Seeder
 }
 ```
 
-10. Register your seeder in DatabaseSeeder.php and execute the seeder: 
+10. Execute seeder to add your user test: 
 
-```php    
-class DatabaseSeeder extends Seeder
-{
-    public function run()
-    {
-        $this->call('UserSeeder');
-    }
-}
-```
-
-11. Execute the migrations to create your table: 
-
-        php ./artisan make:seeder UserSeeder
+        php artisan db:seed --class=UserSeeder
         
 
 
