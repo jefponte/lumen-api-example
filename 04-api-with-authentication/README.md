@@ -103,7 +103,7 @@ class UserSeeder extends Seeder
 18. Register your seeder in DatabaseSeeder.php and execute the seeder: 
 
 
-        php ./artisan make:seeder UserSeeder
+
 ```php    
 class DatabaseSeeder extends Seeder
 {
@@ -114,25 +114,14 @@ class DatabaseSeeder extends Seeder
 }
 ```
 
-16. Mapping user class use preexisting class into ./app/User.php or ./app/Models/User.php. 
-Change the attribute table, fillable and hidden. 
 
-```php
-class User extends Model implements AuthenticatableContract, AuthorizableContract
-{
-    use Authenticatable, Authorizable;
-    protected $table = 'app_user';
-    protected $fillable = [
-        'email',
-    ];
-    protected $hidden = [
-        'password',
-    ];
-}
-```
 17. Execute the migrations to create your table: 
 
-        php ./artisan migrate
+        php ./artisan make:seeder UserSeeder
+
+
+        Obs: If you wanna change the table name or any field you may mapping user class into ./app/Models/User.php. 
+
 
 
 
