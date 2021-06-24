@@ -85,8 +85,8 @@ $app->register(App\Providers\AuthServiceProvider::class);
 
 ```
 
-
 12. Customize the provider AuthServiceProvider.php boot method: 
+
 ```php    
     public function boot()
     {
@@ -102,6 +102,16 @@ $app->register(App\Providers\AuthServiceProvider::class);
                  ->first();
         });
     }
+```
+Obs: Its necessary not forget this: 
+```php    
+
+use App\Models\User;
+use Firebase\JWT\JWT;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\ServiceProvider;
+
 ```
 13. Create a class to generate a token 
 ```php
