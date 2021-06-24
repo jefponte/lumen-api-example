@@ -113,11 +113,29 @@ class DatabaseSeeder extends Seeder
     }
 }
 ```
-
-
 17. Execute the migrations to create your table: 
 
         php ./artisan make:seeder UserSeeder
+18. Customize the AuthServiceProvider.php boot method: 
+```php    
+    public function boot()
+    {
+        $this->app['auth']->viaRequest('api', function (Request $request) {
+            if (!$request->hasHeader('Authorization')) {
+                return null;
+            }
+            $authorizationHeader = $request->header('Authorization');
+            $token = str_replace('Bearer ', '', $authorizationHeader);
+            $dadosAutenticacao = JWT::decode($token, env('JWT_KEY'), ['HS256']);
+
+            return User::where('email', $dadosAutenticacao->email)
+                 ->first();
+        });
+    }
+```
+
+
+
 
 
         Obs: If you wanna change the table name or any field you may mapping user class into ./app/Models/User.php. 
