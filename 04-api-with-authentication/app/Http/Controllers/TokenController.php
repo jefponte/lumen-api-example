@@ -1,15 +1,15 @@
 <?php
-
-use App\Http\Controllers\Controller;
-use App\Models\User;
+namespace App\Http\Controllers;
 use Firebase\JWT\JWT;
+use App\Models\User;
 use Illuminate\Support\Facades\Hash;
-use Laravel\Lumen\Http\Request;
+use Illuminate\Http\Request;
 
 class TokenController extends Controller
 {
     public function generateToken(Request $request)
     {
+        
         $this->validate($request, [
             'email' => 'required|email',
             'password' => 'required'

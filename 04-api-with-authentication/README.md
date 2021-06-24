@@ -55,11 +55,9 @@ class CreateTableUsers extends Migration
         php ./artisan make:seeder UserSeeder
 
 
-9. Customize seeder: 
+9. Add the data of your user test in run method of UserSeeder.php:
 
 ```php     
-class UserSeeder extends Seeder
-{
     public function run()
     {
         User::create([
@@ -68,7 +66,6 @@ class UserSeeder extends Seeder
             'password' => Hash::make('password')
         ]);
     }
-}
 ```
 
 10. Execute seeder to add your user test: 
@@ -109,10 +106,18 @@ $app->register(App\Providers\AuthServiceProvider::class);
 13. Create a class to generate a token 
 ```php
 
+
+namespace App\Http\Controllers;
+use Firebase\JWT\JWT;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\Request;
+
 class TokenController extends Controller
 {
     public function generateToken(Request $request)
     {
+        
         $this->validate($request, [
             'email' => 'required|email',
             'password' => 'required'
