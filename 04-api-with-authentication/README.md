@@ -1,7 +1,5 @@
 # 4 Api With Authentication
 
-## 4.1 Create and protect your route with JWT algoritm
-
 1. Create laravel/lumen project: 
 
         composer create-project --prefer-dist laravel/lumen your-project-name
@@ -135,3 +133,4 @@ $router->group(['prefix' => 'api', 'middleware' => 'auth'], function () use ($ro
 
 
 ## 4.2 Define Your Own Authentication
+
