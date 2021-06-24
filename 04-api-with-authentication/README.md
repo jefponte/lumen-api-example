@@ -85,7 +85,12 @@ $app->register(App\Providers\AuthServiceProvider::class);
 
 ```
 
-12. Customize the provider AuthServiceProvider.php boot method: 
+12. Add constant JWT_KEY in .env file, you may use in your PHP code with function env('JWT_KEY'): 
+
+    JWT_KEY=ahahahaha
+
+
+13. Customize the provider AuthServiceProvider.php boot method: 
 
 ```php    
     public function boot()
@@ -113,7 +118,7 @@ use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 
 ```
-13. Create a class to generate a token 
+14. Create a class to generate a token 
 ```php
 
 
