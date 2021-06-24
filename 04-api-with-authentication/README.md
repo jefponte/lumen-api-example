@@ -10,7 +10,7 @@
         composer require firebase/php-jwt
 
 
-6. Enable the Eloquent and Facades  ./bootstrap/app.php uncomment this lines  
+3. Enable the Eloquent and Facades  ./bootstrap/app.php uncomment this lines  
 ```php
 
 $app->withFacades();
@@ -20,15 +20,15 @@ $app->withEloquent();
 ```
 
 
-7.  Define the database configuration in this ./.env. If you use sqlite you have to create a empty file with this path /database/database.sqlite
+4.  Define the database configuration in this ./.env. If you use sqlite you have to create a empty file with this path /database/database.sqlite
     
         DB_CONNECTION=sqlite
 
-8. Use the migration to create your authentication table: 
+5. Use the migration to create your authentication table: 
 
         php ./artisan make:migration create_table_users --create=users
 
-9. Customize the migration: 
+6. Customize the migration: 
 
 ```php
 class CreateTableUsers extends Migration
@@ -45,17 +45,17 @@ class CreateTableUsers extends Migration
     }        
 }
 ```
-16. Execute php artisan migrate to create your tables.  
+7. Execute php artisan migrate to create your tables.  
 
         php ./artisan migrate
 
 
-16. Use the seeder to add a first user test:
+8. Use the seeder to add a first user test:
 
         php ./artisan make:seeder UserSeeder
 
 
-17. Customize seeder: 
+9. Customize seeder: 
 
 ```php     
 class UserSeeder extends Seeder
@@ -71,7 +71,7 @@ class UserSeeder extends Seeder
 }
 ```
 
-18. Register your seeder in DatabaseSeeder.php and execute the seeder: 
+10. Register your seeder in DatabaseSeeder.php and execute the seeder: 
 
 ```php    
 class DatabaseSeeder extends Seeder
@@ -82,15 +82,14 @@ class DatabaseSeeder extends Seeder
     }
 }
 ```
-17. Execute the migrations to create your table: 
+
+11. Execute the migrations to create your table: 
 
         php ./artisan make:seeder UserSeeder
         
 
 
-
-
-4. Enable the middleware and register Auth Service Provider, in ./bootstrap/app.php uncomment this line  
+12. Enable the middleware and register Auth Service Provider, in ./bootstrap/app.php uncomment this line  
 ```php
 
 $app->routeMiddleware([
@@ -102,7 +101,7 @@ $app->register(App\Providers\AuthServiceProvider::class);
 ```
 
 
-18. Customize the provider AuthServiceProvider.php boot method: 
+13. Customize the provider AuthServiceProvider.php boot method: 
 ```php    
     public function boot()
     {
@@ -119,7 +118,7 @@ $app->register(App\Providers\AuthServiceProvider::class);
         });
     }
 ```
-6. Create a class to generate a token 
+14. Create a class to generate a token 
 ```php
 
 class TokenController extends Controller
@@ -151,7 +150,7 @@ class TokenController extends Controller
 
 ```
 
-5. Tell your route what middleware you want use and your route to make login: 
+15. Tell your route what middleware you want use and your route to make login: 
 
 ```php
 $router->group(['prefix' => 'api', 'middleware' => 'auth'], function () use ($router) {
