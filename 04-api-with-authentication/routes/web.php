@@ -16,3 +16,9 @@
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
+
+$router->group(['prefix' => 'api', 'middleware' => 'auth'], function () use ($router) {
+    return "Anything Protected";
+});
+
+$router->post('/api/login', 'TokenController@generateToken');

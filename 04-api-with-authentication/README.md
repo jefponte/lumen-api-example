@@ -77,7 +77,7 @@ class UserSeeder extends Seeder
         
 
 
-12. Enable the middleware and register Auth Service Provider, in ./bootstrap/app.php uncomment this line  
+11. Enable the middleware and register Auth Service Provider, in ./bootstrap/app.php uncomment this line  
 ```php
 
 $app->routeMiddleware([
@@ -89,7 +89,7 @@ $app->register(App\Providers\AuthServiceProvider::class);
 ```
 
 
-13. Customize the provider AuthServiceProvider.php boot method: 
+12. Customize the provider AuthServiceProvider.php boot method: 
 ```php    
     public function boot()
     {
@@ -106,7 +106,7 @@ $app->register(App\Providers\AuthServiceProvider::class);
         });
     }
 ```
-14. Create a class to generate a token 
+13. Create a class to generate a token 
 ```php
 
 class TokenController extends Controller
