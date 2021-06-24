@@ -119,18 +119,51 @@ $app->register(App\Providers\AuthServiceProvider::class);
         });
     }
 ```
+6. Create a class to generate a token 
+```php
 
-5. Tell your route what middleware you want use: 
+class TokenController extends Controller
+{
+    public function generateToken(Request $request)
+    {
+        $this->validate($request, [
+            'email' => 'required|email',
+            'password' => 'required'
+        ]);
+        $usuario = User::where('email', $request->email)->first();
+
+        if (is_null($usuario)
+            || !Hash::check($request->password, $usuario->password)
+        ) {
+            return response()->json('Invalid user', 401);
+        }
+
+        $token = JWT::encode(
+            ['email' => $request->email],
+            env('JWT_KEY')
+        );
+
+        return [
+            'access_token' => $token
+        ];
+    }
+}
+
+```
+
+5. Tell your route what middleware you want use and your route to make login: 
 
 ```php
 $router->group(['prefix' => 'api', 'middleware' => 'auth'], function () use ($router) {
         return "Anything Protected";
 });
+
+$router->post('/api/login', 'TokenController@generateToken');
 ```
         Obs: If you wanna change the table name or any field you may mapping user class into ./app/Models/User.php. 
 
 
 
 
-## 4.2 Define Your Own Authentication
+
 
