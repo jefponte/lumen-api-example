@@ -12,33 +12,7 @@
         composer require firebase/php-jwt
 
 
-3. Enable the the midleware, in ./bootstrap/app.php uncomment this line  
-```php
-
-$app->routeMiddleware([
-        'auth' => App\Http\Middleware\Authenticate::class,
-]);
-```
-
-4. Register Auth Service Provider, in ./bootstrap/app.php uncomment this line  
-```php
-
-$app->register(App\Providers\AuthServiceProvider::class);
-
-```
-
-
-5. Tell your route what middleware you want use: 
-
-```php
-$router->group(['prefix' => 'api', 'middleware' => 'auth'], function () use ($router) {
-        return "Anything Protected";
-});
-```
-
-## 4.2 Generate Token With Authentication
-
-6. Enable the Eloquent and Facades in ./bootstrap/app.php uncomment this lines  
+6. Enable the Eloquent and Facades  ./bootstrap/app.php uncomment this lines  
 ```php
 
 $app->withFacades();
@@ -46,6 +20,7 @@ $app->withEloquent();
 
 
 ```
+
 
 7.  Define the database configuration in this ./.env. If you use sqlite you have to create a empty file with this path /database/database.sqlite
     
@@ -82,7 +57,7 @@ class CreateTableUsers extends Migration
         php ./artisan make:seeder UserSeeder
 
 
-17. Customize seeder 
+17. Customize seeder: 
 
 ```php     
 class UserSeeder extends Seeder
@@ -98,11 +73,7 @@ class UserSeeder extends Seeder
 }
 ```
 
-
-
 18. Register your seeder in DatabaseSeeder.php and execute the seeder: 
-
-
 
 ```php    
 class DatabaseSeeder extends Seeder
@@ -116,7 +87,24 @@ class DatabaseSeeder extends Seeder
 17. Execute the migrations to create your table: 
 
         php ./artisan make:seeder UserSeeder
-18. Customize the AuthServiceProvider.php boot method: 
+        
+
+
+
+
+4. Enable the middleware and register Auth Service Provider, in ./bootstrap/app.php uncomment this line  
+```php
+
+$app->routeMiddleware([
+        'auth' => App\Http\Middleware\Authenticate::class,
+]);
+
+$app->register(App\Providers\AuthServiceProvider::class);
+
+```
+
+
+18. Customize the provider AuthServiceProvider.php boot method: 
 ```php    
     public function boot()
     {
@@ -134,10 +122,13 @@ class DatabaseSeeder extends Seeder
     }
 ```
 
+5. Tell your route what middleware you want use: 
 
-
-
-
+```php
+$router->group(['prefix' => 'api', 'middleware' => 'auth'], function () use ($router) {
+        return "Anything Protected";
+});
+```
         Obs: If you wanna change the table name or any field you may mapping user class into ./app/Models/User.php. 
 
 
