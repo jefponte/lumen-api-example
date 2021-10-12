@@ -162,7 +162,9 @@ class TokenController extends Controller
 
 ```php
 $router->group(['prefix' => 'api', 'middleware' => 'auth'], function () use ($router) {
-        return "Anything Protected";
+    $router->get('/protected', function() {
+        return "Protected Route";
+    });
 });
 
 $router->post('/api/login', 'TokenController@generateToken');
